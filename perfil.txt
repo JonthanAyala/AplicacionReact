@@ -1,0 +1,53 @@
+import { StyleSheet, Text, View, Image } from 'react-native';
+
+const miNombre = 'Ayala';
+const correo = '20223tn085@utez.edu.mx';
+const ubicacion = 'Emiliano Zapata, Morelos';
+
+App = () => {
+  return (
+    <View style={styles.container}>
+      <Image
+        style={styles.circulito}
+        source={{
+          uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_rU5y_ADdLj49LhpLci8PJun0XhZXjQa0jg&usqp=CAU',
+        }}
+      />
+      <Text style={styles.nombre} >{miNombre}</Text>
+      <Text style={styles.correo} >{correo}</Text>
+      <Text style={styles.ubicacion}>{ubicacion}</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 100,
+    width: 20
+  },
+  circulito: {
+    height: 150,
+    width: 150,
+    backgroundColor: 'black',
+    borderRadius: 100
+  },
+  nombre: {
+    color: 'black',
+    fontSize: 20,
+    marginTop: 20
+  },
+  correo: {
+    color: 'gray',
+    fontSize: 20,
+    marginTop: 20
+  }
+});
+
+
+export default function(){
+  App();
+}
