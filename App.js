@@ -77,8 +77,9 @@ App = () => {
             title: 'Lista de Pokemons',
             data: pokemons
           }]}
-          KeyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => (
+
+          renderItem={({item}) => (
+            
             <Card containerStyle={{
               backgroundColor: 'white',
               borderRadius: 20
@@ -96,6 +97,7 @@ App = () => {
                 />
               </View>
             </Card>
+
           )}
         />
 
