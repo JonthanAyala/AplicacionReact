@@ -18,14 +18,26 @@ App = () => {
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
-        setImage(data.sprites.front_default);
-        setName(data.name);
-        setPokemon(prevPokemon => [...prevPokemon, data]);
+        const pokemonNames = pokemons.map(p => p.name);
+        if (pokemonNames.includes(data.name)) {
+          Alert.alert(
+            '¡Pokémon repetido!',
+          `Ya has buscado a ${data.name} antes.`,
+            [{ text: 'OK', onPress: () => setName('') }]
+          );
+          setImage(data.sprites.front_default);
+          setName(data.name);
+          setPokemon(prevPokemon => [...prevPokemon, data]);
+        } else {
+          setImage(data.sprites.front_default);
+          setName(data.name);
+          setPokemon(prevPokemon => [...prevPokemon, data]);
+        }
       } else {
         Alert.alert('¡No encontramos a tu Pokémon!',
-          `El pokémon con el nombre: ${name} aún no está registrado`,
+      `El pokémon con el nombre: ${name} aún no está registrado`,
           [
-            { text: 'OK', onPress: () => setName('') }
+            { text: 'OK', onPress: () => setName('Ditto') }
           ]);
       }
     } catch (error) {
@@ -71,16 +83,17 @@ App = () => {
               color={'black'} style={{ borderRadius: 20 }} onPress={getPokemon} />
           </View>
         </Card>
-
+        
         <SectionList
           sections={[{
             title: 'Lista de Pokemons',
             data: pokemons
           }]}
-
+          KeyExtractor={(item, index) => item + index}
           renderItem={({item}) => (
             
-            <Card containerStyle={{
+            <Card
+            containerStyle={{
               backgroundColor: 'white',
               borderRadius: 20
             }}>
