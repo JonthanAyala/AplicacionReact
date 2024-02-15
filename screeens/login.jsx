@@ -1,8 +1,14 @@
-import { Button, Card, Image } from "@rneui/base"
+import { Button, Card, Image } from "@rneui/base";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react"
-import { Alert, TextInput, View } from "react-native"
-import { StyleSheet } from "react-native"
+import { useState } from "react";
+import { Alert, TextInput, View } from "react-native";
+import { StyleSheet } from "react-native";
+/*
+import Lottie from "lottie-react"
+import monachina from "../animations/Animation - 1707957463699.json"
+
+<Lottie animationData={groovyWalkAnimation} />
+*/
 
 
 const Login = () => {
@@ -10,29 +16,42 @@ const Login = () => {
     let [pass, setUserPass] = useState('');
     const navigation = useNavigation();
 
-    const validUser = { user: 'Ayala', pass: '123' }
-
+    const validUser = { user: 'Ayala', pass: '123' };
     let intentos = 0;
-    const validateUser = () => {
-        if (userName === validUser.user && pass === validUser.pass) {
-            navigation.navigate('Pokedex');
-        } else {
-            if(intentos >= 3){
-                Alert.alert(
-                    'Demasiados intentos!',
-                    `Usuarios Bloqueado por 30 min`,
-                    [{ text: 'Ok'}]
-    
-                );
-            }
-            Alert.alert(
-                'Usuario incorrecto!',
-                `Tienes ${3-intentos} restantes.`,
-                [{ text: 'Ok', onPress: () => { intentos++ } }]
 
+    const validateUser = (userName, pass, navigation) => {
+        if (intentos >= 3) {
+            Alert.alert(
+                'Demasiados intentos!',
+                `Usuario bloqueado por 30 minutos`,
+                [{ text: 'Ok' }]
             );
+            console.log(intentos);
+        } else {
+            if (userName === validUser.user && pass === validUser.pass) {
+                console.log(intentos);
+                navigation.navigate('Pokedex');
+            } else {
+                if (intentos >= 3) {
+                    Alert.alert(
+                        'Demasiados intentos!',
+                        `Usuario bloqueado por 30 minutos`,
+                        [{ text: 'Ok' }]
+                    );
+                    console.log(intentos);
+                } else {
+                    Alert.alert(
+                        'Usuario incorrecto!',
+                        `Tienes ${3 - intentos} intentos restantes.`,
+                        [{ text: 'Ok', onPress: () => { intentos++ } }]
+                    );
+                    console.log(intentos);
+                }
+            }
         }
-    }
+    };
+
+
     return (
         <View style={styles.container}>
             <Card>

@@ -26,6 +26,8 @@ const Splash = () => {
 
 const style = StyleSheet.create({
     container: {
+        margin: 20,
+        padding: 5,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',

@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { React } from "react";
 import Pokedex from "./screeens/pokedex";
 import Splash from "./screeens/Splash";
-import Login from "./screeens/login"
+import Login from "./screeens/login";
 
 const Stack = createNativeStackNavigator();
 
