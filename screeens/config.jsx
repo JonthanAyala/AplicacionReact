@@ -22,7 +22,7 @@ const Config = () => {
                         <Text style={styles.title}>{item}</Text>
                     </View>
                 )}
-                renderSectionHeader={({ section: title }) => (
+                renderSectionHeader={({ section: {title} }) => (
                     <Text style={styles.header}>{title}</Text>
                 )} />
         </View>
