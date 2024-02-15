@@ -3,11 +3,18 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Alert, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native";
-/*
-import Lottie from "lottie-react"
+import LottieView from 'lottie-react-native';
 import monachina from "../animations/Animation - 1707957463699.json"
 
+/*
+import Lottie from "lottie-react"
+
 <Lottie animationData={groovyWalkAnimation} />
+
+
+<Image
+                    style={styles.circulito}
+                    source={{ uri: 'https://play-lh.googleusercontent.com/1oKIe8RjSYLWRtNbXofA_ItvuZ17afSayJl4U39k3io72zw8qyUYS39JEL2_tOLfnqE=w240-h480-rw' }} />
 */
 
 
@@ -57,9 +64,17 @@ const Login = () => {
             <Card>
                 <Card.Title>Iniciar sesion</Card.Title>
                 <Card.Divider />
-                <Image
-                    style={styles.circulito}
-                    source={{ uri: 'https://play-lh.googleusercontent.com/1oKIe8RjSYLWRtNbXofA_ItvuZ17afSayJl4U39k3io72zw8qyUYS39JEL2_tOLfnqE=w240-h480-rw' }} />
+                <LottieView
+                    autoPlay
+                    ref={animation}
+                    style={{
+                        width: 200,
+                        height: 200,
+                        backgroundColor: '#eee',
+                    }}
+                    // Find more Lottie files at https://lottiefiles.com/featured
+                    source={require('../animations/Animation - 1707957463699.json')}
+                />
                 <TextInput
                     style={styles.texto}
                     placeholder="Usuario"
