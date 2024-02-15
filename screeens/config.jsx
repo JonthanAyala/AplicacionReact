@@ -1,17 +1,18 @@
 import { SectionList, View } from "react-native"
 import { StyleSheet } from "react-native"
 
+const DATA = [
+    {
+        title: 'Configuracion',
+        data: ['Mi perfil',
+            'Mis preferencias',
+            'Cerrar Sesion']
+    }
+    
+];
 
 const Config = () => {
 
-    const DATA = [
-        {
-            title: 'Configuracion',
-            data: ['Mi perfil',
-                'Mis preferencias',
-                'Cerrar Sesion']
-        }
-    ];
     return (
         <View style={styles.container}>
             <SectionList sections={DATA}
