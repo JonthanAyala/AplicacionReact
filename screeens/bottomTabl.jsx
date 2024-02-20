@@ -3,15 +3,16 @@ import productos from "./productos";
 import Pokedex from "./pokedex";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import Perfil from "./perfil";
+import Post from "./post";
 
 const Tab = createBottomTabNavigator();
 
 const BottNav = () => {
     return (
         <Tab.Navigator initialRouteName="Products">
-            <Tab.Screen name="Products" component={productos}
+            <Tab.Screen name="Post" component={Post}
                 options={{
-                    tabBarLabel: 'Productos',
+                    tabBarShowLabel: false,
                     headerShown: false,
                     tabBarActiveTintColor: '#089779',
                     tabBarInactiveTintColor: '#002e60',
@@ -23,7 +24,7 @@ const BottNav = () => {
             />
             <Tab.Screen name="Pokedex" component={Pokedex}
                 options={{
-                    tabBarLabel: 'Pokedex',
+                    tabBarShowLabel: false,
                     headerShown: false,
                     tabBarActiveTintColor: '#089779',
                     tabBarInactiveTintColor: '#002e60',
@@ -35,7 +36,7 @@ const BottNav = () => {
             />
             <Tab.Screen name="Perfil" component={Perfil}
                 options={{
-                    tabBarLabel: 'Perfil',
+                    tabBarShowLabel: false,
                     headerShown: false,
                     tabBarActiveTintColor: '#089779',
                     tabBarInactiveTintColor: '#002e60',

@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
         height: 100,
         width: 100,
         borderRadius: 300,
-        margin: 20
+        margin: 20,
+        resizeMode: 'contain'
     },
     texto: {
         fontSize: 15,
