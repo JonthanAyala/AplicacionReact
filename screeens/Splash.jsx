@@ -4,17 +4,19 @@ import { Image } from "@rneui/themed";
 import { StatusBar } from "expo-status-bar";
 import LottieView from "lottie-react-native";
 import { useEffect } from "react";
-import { StyleSheet, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 
 const Splash = () => {
 
     const navigation = useNavigation();
+
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            navigation.replace('Login')
+            navigation.navigate('Login')
         }, 3000)
         return () => clearTimeout(timeoutId);
     }, [navigation])
+    
 
     return (
         <View style={style.container}>

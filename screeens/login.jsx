@@ -1,14 +1,18 @@
 import { Button, Card, Image } from "@rneui/base";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { Alert, TextInput, View } from "react-native";
+import { Alert, TextInput, View, Tex } from "react-native";
 import { StyleSheet } from "react-native";
+import { Firebase } from "../config/firebase";
 
 
 const Login = () => {
+
     let [userName, setUserName] = useState('');
     let [pass, setUserPass] = useState('');
     const navigation = useNavigation();
+    
+    const {appFirebase} = Firebase();
 
     const validUser = { user: 'Ayala', password: '123' };
     let intentos = 0;
