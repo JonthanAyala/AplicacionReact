@@ -1,9 +1,11 @@
 import { Button, Card, Image } from "@rneui/base";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { Alert, TextInput, View, Tex } from "react-native";
+import { Alert, TextInput, View } from "react-native";
 import { StyleSheet } from "react-native";
-import { Firebase } from "../config/firebase";
+import { Backend } from "../config/backendconfig";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 const Login = () => {
@@ -12,7 +14,7 @@ const Login = () => {
     let [pass, setUserPass] = useState('');
     const navigation = useNavigation();
     
-    const {appFirebase} = Firebase();
+    const {url} = Backend();
 
     const validUser = { user: 'Ayala', password: '123' };
     let intentos = 0;
@@ -29,6 +31,8 @@ const Login = () => {
         } else {
             if (userName === validUser.user
                 && pass === validUser.password) {
+                    const data = {username: userName, password: pass}
+                    AsyncStorage.setItem("userLogged", JSON.stringify(data));
                 navigation.replace('BottomTab');
             } else {
                 Alert.alert('Usuario incorrecto',
@@ -44,6 +48,24 @@ const Login = () => {
         }
     }
 
+    const checkUser = async () => {
+        const payload = { username: userName, password: pass};
+        const response = await fetch(url+"/login", {
+            method: "POST",
+            headers: {"Content-type" : "application/json"},
+            body: JSON.stringify(payload)
+
+        });
+        if(response.ok && response.status == 200){
+            const data = response.json();
+            AsyncStorage.setItem("userLogged", JSON.stringify(data));
+            //AsyncStorage.removeItem("userLogged");//Remover un item
+            //AsyncStorage.getItem("userLogged"); // Obtener un item
+            Alert.alert(`Bienvenido ${data.username}`, undefined,[
+                {text: "Gracias", onPress: ()=> navigation.replace("BottomTab")}
+            ] );
+        }
+    }
 
     return (
         <View style={styles.container}>

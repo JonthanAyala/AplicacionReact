@@ -1,5 +1,7 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRoute } from "@react-navigation/native";
 import {Card, Image, Text } from "@rneui/base";
+import { useEffect, useState } from "react";
 import {View } from "react-native";
 import { StyleSheet } from "react-native";
 
@@ -7,6 +9,19 @@ import { StyleSheet } from "react-native";
 const Perfil = () => {
     const route = useRoute();
     const {item} = route.params ? route.params : {username: "No hay usuarios"};
+    const [userLogged, setUserlogged] = useState();
+
+    useEffect(()=>{
+        console.log(userLogged);
+    }, [userLogged]);
+
+    useEffect(()=>{
+        getUser = async () =>{
+            const get = await AsyncStorage.getItem("userLogged");
+            console.log(JSON.parse(get));
+            setUserlogged(JSON.parse(get));
+        }
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -17,6 +32,7 @@ const Perfil = () => {
                     style={styles.circulito}
                     source={item?.userImagen} />
                 <Text style={styles.texto}>{item?.username}</Text>
+                <Text>{userLogged? userLogged.username: "No se inicio sesion"}</Text>
             </Card>
         </View>
     )
