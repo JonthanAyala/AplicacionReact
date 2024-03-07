@@ -2,12 +2,40 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRoute } from "@react-navigation/native";
 import {Card, Image, Text } from "@rneui/base";
 import { useEffect, useState } from "react";
-import {View } from "react-native";
+import {View, } from "react-native";
 import { StyleSheet } from "react-native";
+import * as ImagePicker from 'expo-image-picker';
 
 
 const Perfil = () => {
-    const route = useRoute();
+
+    const [image, setImage] = useState("https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2023/07/inteligencia-artificial-my-hero-academia-uraraka.jpg")
+
+    const selectImage = async () => {
+        const result = await ImagePicker.launchCameraAsync({
+            quality:1,
+            allowsEditing: true,
+            aspect:[3,4],
+            mediaTypes: ImagePicker.MediaTypeOptions.All
+        });
+
+        if(!result.canceled){
+            setImage(result.assets[0].uri)
+        }
+    }
+    return(
+        <View style={styles.container}>
+            <Image 
+            onPress={selectImage}
+            source={{uri: image}}
+            style={{width:100, height: 100, borderRadius: 50}}
+            />
+            <Text>
+                Apoco si
+            </Text>
+        </View>
+    )
+    /*const route = useRoute();
     const {item} = route.params ? route.params : {username: "No hay usuarios"};
     const [userLogged, setUserlogged] = useState();
 
@@ -35,7 +63,8 @@ const Perfil = () => {
                 <Text>{userLogged? userLogged.username: "No se inicio sesion"}</Text>
             </Card>
         </View>
-    )
+    )*/
+    
 }
 
 const styles = StyleSheet.create({

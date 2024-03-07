@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 
 const BottNav = () => {
     return (
-        <Tab.Navigator initialRouteName="Login2">
+        <Tab.Navigator initialRouteName="Perfil">
             <Tab.Screen name="Post" component={Post}
                 options={{
                     tabBarShowLabel: false,

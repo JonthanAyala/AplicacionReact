@@ -12,7 +12,7 @@ const Splash = () => {
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            navigation.navigate('Login')
+            navigation.navigate('registro')
         }, 3000)
         return () => clearTimeout(timeoutId);
     }, [navigation])
