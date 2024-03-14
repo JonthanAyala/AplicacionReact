@@ -4,7 +4,7 @@ import { StyleSheet, TextInput, View } from "react-native"
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from "@react-navigation/native";
 
-const registroUsuario = () => {
+const RegistroUsuario = () => {
     let [user, setUser] = useState('');
     let [edad, setEdad] = useState('');
     let [image, setImage] = useState("")
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
         margin: 20
     }
 });
-export default registroUsuario;
+export default RegistroUsuario;
