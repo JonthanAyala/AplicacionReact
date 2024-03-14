@@ -96,10 +96,6 @@ const Post = () => {
                     )}
                 />
             </View>
-
-
-
-
         </View>
     )
 }

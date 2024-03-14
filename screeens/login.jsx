@@ -54,7 +54,6 @@ const Login = () => {
             method: "POST",
             headers: {"Content-type" : "application/json"},
             body: JSON.stringify(payload)
-
         });
         if(response.ok && response.status == 200){
             const data = response.json();

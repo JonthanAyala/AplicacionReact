@@ -7,6 +7,7 @@ import BottNav from "./screeens/bottomTabl";
 import Adios from "./screeens/hola";
 import registroUsuario from "./screeens/registroUsuario";
 import Perfil2 from "./screeens/perfil2";
+import { MapScreen } from "./screeens/mapScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ App = () => {
         <Stack.Screen name="Hola" component={Adios} options={{headerShown: false}} />
         <Stack.Screen name="registro" component={registroUsuario} options={{headerShown: false}}/>
         <Stack.Screen name="Perfil2" component={Perfil2} options={{headerShown: false}}/>
+        <Stack.Screen name="Mapa" component={MapScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
 
