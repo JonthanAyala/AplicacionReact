@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { CustomMarker } from '../../components';
+import { MARKERS_DATA } from '../../data';
+import { mapStyle } from './mapStyle';
 
 export function MapScreen() {
-    const [selectedCoordinate, setSelectedCoordinate] = useState(null);
-
-  const handleMapPress = (event) => {
-    setSelectedCoordinate(event.nativeEvent.coordinate);
-  };
   return (
     <View style={styles.container}>
       <MapView
+        customMapStyle={mapStyle}
         provider={PROVIDER_GOOGLE}
         style={styles.mapStyle}
         initialRegion={{
@@ -20,9 +19,17 @@ export function MapScreen() {
           longitudeDelta: 0.003,
         }}
         mapType="standard"
-        onPress={handleMapPress}
       >
-        {selectedCoordinate && <Marker coordinate={selectedCoordinate} />}
+        {MARKERS_DATA.map((marker) => (
+          <CustomMarker
+            key={marker.id}
+            id={marker.id}
+            selectedMarker={null}
+            color={marker.color}
+            latitude={marker.latitude}
+            longitude={marker.longitude}
+          ></CustomMarker>
+        ))}
       </MapView>
     </View>
   );
