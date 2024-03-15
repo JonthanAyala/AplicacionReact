@@ -1,34 +1,35 @@
-import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { CustomMarker } from '../../components';
-import { MARKERS_DATA } from '../../data';
-import { mapStyle } from './mapStyle';
+import { useState } from "react";
+import { Dimensions, StyleSheet, View } from "react-native";
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 
+let i = 1;
 export function MapScreen() {
+  const [markers, setMarkers] = useState([]);
+ 
+  const selectPlace = (event) => {
+    const { coordinate } = event.nativeEvent;
+    //const title = `lattitude: ${coordinate.latitude}, longitude: ${coordinate.longitude}`;
+    const title = `Marcador ${i}`
+    const newMarker = { coordinate, title };
+    setMarkers([...markers, newMarker]);
+    i++;
+  };
   return (
     <View style={styles.container}>
       <MapView
-        customMapStyle={mapStyle}
         provider={PROVIDER_GOOGLE}
         style={styles.mapStyle}
         initialRegion={{
-          latitude: 41.3995345,
-          longitude: 2.1909796,
+          latitude: 18.85251438938447,
+          longitude: -99.19967518574617,
           latitudeDelta: 0.003,
           longitudeDelta: 0.003,
         }}
         mapType="standard"
+        onPress={selectPlace}
       >
-        {MARKERS_DATA.map((marker) => (
-          <CustomMarker
-            key={marker.id}
-            id={marker.id}
-            selectedMarker={null}
-            color={marker.color}
-            latitude={marker.latitude}
-            longitude={marker.longitude}
-          ></CustomMarker>
+        {markers.map((marker, index) => (
+          <Marker key={index} title={marker.title} coordinate={marker.coordinate} />
         ))}
       </MapView>
     </View>
@@ -37,13 +38,12 @@ export function MapScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "black",
+    alignItems: "center",
+    justifyContent: "center",
   },
   mapStyle: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   },
 });
